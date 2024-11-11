@@ -1,49 +1,34 @@
-import { EntryListItem } from "../api/models/entryListItem";
+import { useEffect, useState } from "react";
+import { EntryTitle } from "../api/models/entryTitle";
+import { useNavigate } from "react-router-dom";
 
 function EntryListComponent() {
-    const entryListItems: EntryListItem[] = [
-        {
-            id: 1,
-            titleId: 1,
-            title: "title list 1",
-            entryCount: 15
-        },
-        {
-            id: 2,
-            titleId: 1,
-            title: "title list 2",
-            entryCount: 15
-        },
-        {
-            id: 4,
-            titleId: 1,
-            title: "title list 4",
-            entryCount: 15
-        },
-        {
-            id: 5,
-            titleId: 1,
-            title: "title list 5",
-            entryCount: 15
-        },
-        {
-            id: 7,
-            titleId: 1,
-            title: "title list 7",
-            entryCount: 15
-        },
-    ]
+
+    const [titles, setTitles] = useState<EntryTitle[] | null>(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        fetch('http://localhost:5028/api/Title')
+            .then(response => response.json())
+            .then(t => {
+                setTitles(t.data);
+                console.log(titles);
+            })
+            .catch(e => console.error(e))
+    }, [])
+
+    if (titles == null) return <div>Loading...</div>
 
     return (
-        <div className="w-[100%] bg-slate-500 border border-red-500 overflow-auto">
+        <div className="w-[100%] overflow-auto">
             <div className="text-xl text-gray-400 pb-4 px-5">
                 <h2>gundem</h2>
             </div>
             <div className="flex flex-col px-5 pb-4">
-                {entryListItems.map((e, index) =>
-                    <div key={index} className="flex justify-between">
-                        <div>{e.title}</div>
-                        <div>{e.entryCount}</div>
+                {titles.map(t =>
+                    <div key={t.id} onClick={() => navigate(`/entries/titles/${t.id}`)} className="flex justify-between cursor-pointer">
+                        <div>{t.header}</div>
+                        <div>{t.entries.length}</div>
                     </div>
                 )}
             </div>

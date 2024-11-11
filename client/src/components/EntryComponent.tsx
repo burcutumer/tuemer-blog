@@ -1,18 +1,18 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faHeartBroken } from '@fortawesome/free-solid-svg-icons'
-import { EntryTitle } from '../api/models/entryTitle';
-
+import { Entry } from '../api/models/entry';
 
 interface Props {
-    entryTitle: EntryTitle
+    entry: Entry,
 }
 
-function EntryComponent({ entryTitle }: Props) {
+function EntryComponent({entry}: Props) {
+
     return (
         <>
             <div className="border rounded-md p-3 overflow-auto">
-                <h1 className="mb-3">{entryTitle.title}</h1>
-                <p>{entryTitle.entry.message}</p>
+                <h1 className="mb-3">entry title header</h1>
+                <p>{entry.message}</p>
                 <div className="flex justify-between p-2">
                     <div>
                         <span className='pr-3'>
@@ -30,12 +30,13 @@ function EntryComponent({ entryTitle }: Props) {
                     <div className="flex">
                         <div className="flex flex-col mr-4 text-right">
                             <span className="text-sm">
-                                {entryTitle.entry.author.fullName}
+                                {entry.author.id}
                             </span>
-                            <span className="text-xs">{entryTitle.entry.date}</span>
+                            <span className="text-xs">{entry.date.split('T')[0].replace('-','.').replace('-','.')}</span>
                         </div>
                         <div className="flex flex-col items-end">
-                            <img className="h-9 w-9 object-cover rounded-full" src={entryTitle.entry.author.avatarUrl} />
+                            <img className="h-9 w-9 object-cover rounded-full" src={"src/assets/avatar.jpeg"}
+                            />
                         </div>
                     </div>
                 </div>
