@@ -14,7 +14,7 @@ function EntryFeedComponent() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`http://localhost:5028/api/Entries/titles/${titleId}`)
+        fetch(`/api/Entries/titles/${titleId}`)
             .then(response => response.json())
             .then(t => {
                 setEntries(t.data);

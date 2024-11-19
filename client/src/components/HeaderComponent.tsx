@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faBlog, faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faBlog, faBars } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom';
 import { useTheContext } from './TheContext';
 import { useState } from 'react';

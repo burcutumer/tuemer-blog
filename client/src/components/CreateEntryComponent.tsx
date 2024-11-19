@@ -15,7 +15,7 @@ function CreateEntryComponent() {
         e.preventDefault();
         try {
             const jwt = localStorage.getItem("jwt");
-            const response = await fetch(`http://localhost:5028/api/Entries/title/${idTitle}`, {
+            const response = await fetch(`/api/Entries/title/${idTitle}`, {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${jwt}`,

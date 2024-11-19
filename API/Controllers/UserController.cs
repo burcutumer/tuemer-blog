@@ -14,7 +14,6 @@ using Microsoft.Extensions.Logging;
 
 namespace API.Controllers
 {
-    [Route("[controller]")]
     public class UserController : BaseApiController
     {
 

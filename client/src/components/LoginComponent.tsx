@@ -1,6 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Author } from "../api/models/author";
 import { useTheContext } from "./TheContext";
 
 
@@ -8,19 +7,19 @@ function LoginComponent() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
-    const {author, setAuthor} = useTheContext();
+    const {setAuthor} = useTheContext();
     const navigate = useNavigate();
 
 // jwt ile Userı bulduk (jwt email ve sifre postlayınca geldi)
     async function fetchUser() {
         const jwt = localStorage.getItem("jwt");
-        const response = await fetch(`http://localhost:5028/User`, {
+        const response = await fetch(`/api/User`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${jwt}`
             }
         });
-        if (!response){
+        if (!response.ok){
             throw new Error("Failed to fetch User.");
         }
         const authorResponse = await response.json();
@@ -31,7 +30,7 @@ function LoginComponent() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const response = await fetch("http://localhost:5028/Auth/login", {
+            const response = await fetch("/api/Auth/login", {
                 method: "POST", // specify the method
                 headers: {
                     "Content-Type": "application/json", // set content type to JSON

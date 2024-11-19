@@ -8,7 +8,7 @@ function EntryListComponent() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://localhost:5028/api/Title')
+        fetch('/api/Title')
             .then(response => response.json())
             .then(t => {
                 setTitles(t.data);

@@ -16,7 +16,6 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace API.Controllers
 {
-    [Route("[controller]")]
     public class AuthController : BaseApiController
     {
         private readonly IAuthService _authService;
